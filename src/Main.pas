@@ -248,7 +248,6 @@ var
 begin
   with _backupCreateInfo do
   begin
-    pathInstallation := settings.cartella_installazione;
     serviceName := settings.nome_servizioMySQL;
     pathDB := Self.DB_path;
     pathInstallation := settings.cartella_installazione;

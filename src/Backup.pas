@@ -227,11 +227,10 @@ procedure TBackup.preBackupTasks;
   procedure stopDBService;
   const
     NAME_MACHINE = '';
-    FORCE_STOP = TRUE;
     ERR_MSG = 'Impossibile fermare il servizio del database';
   begin
     try
-      TWindowsService.stop(info.serviceName, NAME_MACHINE, FORCE_STOP);
+      TWindowsService.stop(info.serviceName, NAME_MACHINE, FORCE);
     except
       on E: Exception do
       begin
@@ -242,7 +241,8 @@ procedure TBackup.preBackupTasks;
 
   procedure stopLogicalDOC;
   const
-    ERR_MSG = 'Impossibile fermare il servizio LogicalDOC';
+    NAME_MACHINE = '';
+    ERR_MSG = 'Impossibile fermare il servizio LogicalDOC :';
   var
     _LogicalDOC_fileName: string;
     _params: string;
@@ -254,9 +254,11 @@ procedure TBackup.preBackupTasks;
     except
       on E: Exception do
       begin
-        raise Exception.Create(ERR_MSG);
+        raise Exception.Create(ERR_MSG + E.Message);
       end;
     end;
+
+    TWindowsService.stopIfExists('LogicalDOC-Update', NAME_MACHINE, FORCE);
   end;
 
 begin
@@ -296,6 +298,8 @@ procedure TBackup.postBackupTasks;
         raise Exception.Create(ERR_MSG);
       end;
     end;
+
+    TWindowsService.startIfExists('LogicalDOC-Update');
   end;
 
 begin

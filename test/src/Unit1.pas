@@ -28,9 +28,10 @@ implementation
 
 uses
   Backup, Main, Logger,
-  System.IOUtils, System.Zip,
+  Klib.AsyncMethod,
+  Klib.Types, KLib.Utils, KLib.Windows,
   IdFTPCommon,
-  Klib.AsyncMethod, Klib.Types, KLib.Utils;
+  System.IOUtils, System.Zip;
 
 procedure TForm2.Button1Click(Sender: TObject);
 var
@@ -45,7 +46,7 @@ begin
     serviceName := 'DB_GO';
     pathDB := 'C:\Gestionale_Open\Files\data';
     //    pathDB := 'C:\Gestionale_Open\Files\Programma_GO\exe';
-    pathInstallationGO := 'C:\Gestionale_Open\Files\Programma_GO';
+    pathInstallation := 'C:\Gestionale_Open\Files\Programma_GO';
   end;
   with callbacks do
   begin
@@ -79,8 +80,15 @@ end;
 
 procedure TForm2.Button2Click(Sender: TObject);
 begin
-  ShowMessage(getDirExe);
-  ShowMessage(GetCurrentDir);
+  IF checkIfIsWindowsSubDir('C:\LogicalDOC\data', 'C:\LogicalDOC') then
+  begin
+    ShowMessage('SUBDIR');
+  end
+  else
+  begin
+    ShowMessage('NO SUBDIR');
+  end;
+
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);

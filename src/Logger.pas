@@ -41,7 +41,14 @@ begin
   headLog := sLineBreak + getCurrentTimeStamp + ' -';
 
   AssignFile(_file, FILENAME_LOG);
-  Append(_file);
+  if FileExists(FILENAME_LOG) then
+  begin
+    Append(_file);
+  end
+  else
+  begin
+    Rewrite(_file);
+  end;
   Writeln(_file, headLog + msg);
   CloseFile(_file);
   //  TFile.AppendAllText(FILENAME_LOG, headLog + msg);

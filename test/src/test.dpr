@@ -9,7 +9,6 @@ uses
   Main in '..\..\src\Main.pas',
   ConfigBackupIniManipulator in '..\..\src\ConfigBackupIniManipulator.pas',
   KLib.WaitForm in '..\..\src\boundaries\KLib\Delphi_FormUtils_Library\KLib.WaitForm.pas' {WaitForm},
-  RegistroGO in '..\..\src\RegistroGO.pas',
   KLib.Constants in '..\..\src\boundaries\KLib\Delphi_Utils_Library\KLib.Constants.pas',
   KLib.Generic in '..\..\src\boundaries\KLib\Delphi_Utils_Library\KLib.Generic.pas',
   KLib.Graphics in '..\..\src\boundaries\KLib\Delphi_Utils_Library\KLib.Graphics.pas',
