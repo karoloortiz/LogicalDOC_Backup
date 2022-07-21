@@ -1,0 +1,12 @@
+[submodule "src/boundaries/KLib/Delphi_Utils_Library"]
+	path = src/boundaries/KLib/Delphi_Utils_Library
+	url = https://github.com/karoloortiz/Delphi_Utils_Library.git
+[submodule "src/boundaries/KLib/Delphi_Async_Library"]
+	path = src/boundaries/KLib/Delphi_Async_Library
+	url = https://github.com/karoloortiz/Delphi_Async_Library.git
+[submodule "src/boundaries/KLib/Delphi_FormUtils_Library"]
+	path = src/boundaries/KLib/Delphi_FormUtils_Library
+	url = https://github.com/karoloortiz/Delphi_FormUtils_Library.git
+[submodule "src/boundaries/KLib/Delphi_MySQL_Library"]
+	path = src/boundaries/KLib/Delphi_MySQL_Library
+	url = https://github.com/karoloortiz/Delphi_MySQL_Library.git
