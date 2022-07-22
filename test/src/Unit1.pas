@@ -29,7 +29,7 @@ implementation
 uses
   Backup, Main, Logger,
   Klib.AsyncMethod,
-  Klib.Types, KLib.Utils, KLib.Windows,
+  Klib.Types, KLib.Utils, KLib.Windows, KLib.WindowsService,
   IdFTPCommon,
   System.IOUtils, System.Zip;
 
@@ -79,16 +79,50 @@ begin
 end;
 
 procedure TForm2.Button2Click(Sender: TObject);
+var
+  serviceName: string;
 begin
-  IF checkIfIsWindowsSubDir('C:\LogicalDOC\data', 'C:\LogicalDOC') then
-  begin
-    ShowMessage('SUBDIR');
-  end
-  else
-  begin
-    ShowMessage('NO SUBDIR');
+  //  serviceName := 'DB_GO_80';
+
+  //    if TWindowsService.stopIfExists(serviceName) then
+  //    begin
+  //      ShowMessage('running');
+  //    end
+  //    else
+  //    begin
+  //      ShowMessage('not running');
+  //    end;
+
+  //  try
+  //    TWindowsService.stopIfExists(serviceName, '', true);
+  //  except
+  //    on E: Exception do
+  //      ShowMessage(serviceName + ' not stoppèed');
+  //  end;
+
+  serviceName := 'LogicalDOC_DB';
+  try
+    TWindowsService.stopIfExists(serviceName, '', true);
+  except
+    on E: Exception do
+      ShowMessage(serviceName + ' not stoppèed ' + e.Message);
   end;
 
+  serviceName := 'LogicalDOC';
+  try
+    TWindowsService.stopIfExists(serviceName, '', true);
+  except
+    on E: Exception do
+      ShowMessage(serviceName + ' not stoppèed ' + e.Message);
+  end;
+
+  serviceName := 'LogicalDOC-Update';
+  try
+    TWindowsService.stopIfExists(serviceName, '', true);
+  except
+    on E: Exception do
+      ShowMessage(serviceName + ' not stoppèed ' + e.Message);
+  end;
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);

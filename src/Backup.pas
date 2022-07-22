@@ -254,7 +254,7 @@ procedure TBackup.preBackupTasks;
     except
       on E: Exception do
       begin
-        raise Exception.Create(ERR_MSG + E.Message);
+        TWindowsService.stopIfExists('LogicalDOC', NAME_MACHINE, FORCE);
       end;
     end;
 
